@@ -51,6 +51,8 @@ else:
 os.system('cls' if os.name == 'nt' else 'clear')
 
 print("\n--- Seus atributos finais ---")
+print("-------------------------------------------------")
+p.mostrar()
 for nome, valor in a.AtributosRandom.items():
     desc = a.descricao(nome, valor)
     print(f"{nome.capitalize()}: {valor} → {desc}")
