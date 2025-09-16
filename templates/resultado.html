@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Personagem Criado</title>
+</head>
+<body>
+    <h1>🎲 Personagem Criado 🎲</h1>
+
+    <h2>Informações Gerais</h2>
+    <p><b>Nome:</b> {{ personagem.nome }}</p>
+    <p><b>Idade:</b> {{ personagem.idade }}</p>
+
+    <h2>Raça</h2>
+    <p><b>Tipo:</b> {{ raca.raca }}</p>
+    <p><b>Movimento:</b> {{ raca.movimento }}</p>
+    <p><b>Infravisão:</b> {{ raca.infravisao }}</p>
+    <p><b>Alinhamento:</b> {{ raca.alinhamento }}</p>
+    <p><b>Peso Base:</b> {{ raca.peso }} kg</p>
+    <p><b>Classificação por Idade:</b> {{ raca.idades }}</p>
+
+    <h3>Habilidades Raciais</h3>
+    <ul>
+        {% for hab in raca.habilidades %}
+            <li>{{ hab }}</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Classe</h2>
+    <p><b>Tipo:</b> {{ classe.tipo }}</p>
+
+    <h3>Habilidades de Classe</h3>
+    <ul>
+        {% for hab in classe.habilidades %}
+            <li>{{ hab }}</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Atributos</h2>
+    <ul>
+        {% for nome, valor in atributos.items() %}
+            <li>{{ nome.capitalize() }}: {{ valor }}</li>
+        {% endfor %}
+    </ul>
+
+    <hr>
+    <a href="/">🔄 Criar outro personagem</a>
+</body>
+</html>

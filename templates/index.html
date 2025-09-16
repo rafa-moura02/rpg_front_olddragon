@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Criação de Personagem</title>
+   
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-dark text-light">
+
+<div class="container py-5">
+    <h1 class="text-center mb-4">🎲 Criação de Personagem RPG 🎲</h1>
+
+    
+    <div class="card bg-secondary mb-4">
+        <div class="card-body">
+            <h3 class="card-title">Preencha os dados</h3>
+            <form method="post" class="row g-3">
+                <div class="col-md-6">
+                    <label class="form-label">Nome</label>
+                    <input type="text" name="nome" class="form-control" required>
+                </div>
+
+                <div class="col-md-6">
+                    <label class="form-label">Idade</label>
+                    <input type="number" name="idade" class="form-control" required>
+                </div>
+
+                <div class="col-md-6">
+                    <label class="form-label">Raça</label>
+                    <select name="raca" class="form-select">
+                        <option value="1">Elfo</option>
+                        <option value="2">Anão</option>
+                        <option value="3">Humano</option>
+                        <option value="4">Gnomo</option>
+                        <option value="5">Meio Elfo</option>
+                        <option value="6">Halfling</option>
+                    </select>
+                </div>
+
+                <div class="col-md-6">
+                    <label class="form-label">Classe</label>
+                    <select name="classe" class="form-select">
+                        <option value="1">Guerreiro</option>
+                        <option value="2">Mago</option>
+                        <option value="3">Ladrão</option>
+                    </select>
+                </div>
+
+                <div class="col-md-12">
+                    <label class="form-label">Estilo de Atributos</label>
+                    <select name="estilo" class="form-select">
+                        <option value="1">Clássico (3d6 em ordem)</option>
+                        <option value="2">Aventureiro (3d6 livre)</option>
+                        <option value="3">Heróico (4d6 descartando menor)</option>
+                    </select>
+                </div>
+
+                <div class="col-12 text-center">
+                    <button type="submit" class="btn btn-warning mt-3">Criar Personagem</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    
+    <h2 class="mb-3">📜 Personagens Criados</h2>
+    {% if personagens %}
+        <div class="row">
+            {% for p in personagens %}
+                <div class="col-md-6 mb-4">
+                    <div class="card bg-light text-dark">
+                        <div class="card-body">
+                            <h4 class="card-title">{{ p.nome }} ({{ p.classe }} - {{ p.raca }})</h4>
+                            <p><b>Idade:</b> {{ p.idade }}</p>
+
+                            <h5 class="mt-3">⚔️ Atributos</h5>
+                            <ul>
+                                {% for nome, valor in p.atributos.items() %}
+                                    <li><b>{{ nome.capitalize() }}:</b> {{ valor }}</li>
+                                {% endfor %}
+                            </ul>
+
+                            <h5 class="mt-3">🌟 Habilidades Raciais</h5>
+                            <ul>
+                                {% for hab in p.habilidades_raca %}
+                                    <li>{{ hab }}</li>
+                                {% endfor %}
+                            </ul>
+
+                            <h5 class="mt-3">🔥 Habilidades de Classe</h5>
+                            <ul>
+                                {% for hab in p.habilidades_classe %}
+                                    <li>{{ hab }}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p class="text-muted">Nenhum personagem criado ainda.</p>
+    {% endif %}
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
